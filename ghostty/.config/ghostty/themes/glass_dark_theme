@@ -1,0 +1,43 @@
+
+# Custom glass dark theme for Ghostty!
+
+#Blur
+ background-opacity = 0.92
+background-blur = 50
+
+background = #1F1F1F
+window-titlebar-background = #1F1F1F 
+
+# Default text color
+foreground = #EBEBEB
+
+# Text Selection
+selection-background = #FB6376
+selection-foreground = #63fbe8
+
+cursor-color = #2F2F2F
+cursor-text = #383a42
+
+palette = 0=#383a42
+palette = 1=#e45649
+palette = 2=#50a14f
+palette = 3=#c18401
+palette = 4=#0184bc
+palette = 5=#a626a4
+
+# palette 6 is for Cyan color, this is for the ls -a the hidden files color
+palette = 6=#0997b3
+
+palette = 7=#ffffff
+
+# Brighter colors of the previous
+palette = 8=#4f525e
+palette = 9=#e06c75
+palette = 10=#98c379
+palette = 11=#e5c07b
+palette = 12=#61afef
+palette = 13=#c678dd
+palette = 14=#56b6c2
+palette = 15=#ffffff
+
+
