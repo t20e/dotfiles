@@ -25,10 +25,6 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-font-family = JetBrainsMono Nerd Font
-font-size = 16
-window-padding-x = 30
-window-padding-y = 10
 
 #
 # # Spacing around the equals sign does not matter.
@@ -52,12 +48,20 @@ window-padding-y = 10
 # resize-overlay-duration = 4s 200ms
 
 
-# ADD MY CUSTOM LIGHT AND DARK THEMES
-theme = dark:glass_dark_theme,light:glass_light_theme
 
-
+font-family = JetBrainsMono Nerd Font
+font-size = 16
+window-padding-x = 30
+window-padding-y = 10
+cursor-style = block
 window-height = 30
 window-width = 90
 
 # Add glass theme
-background-opacity = 0.0
+background-opacity = 0.5
+# macos-glass-clear or macos-glass-regular
+background-blur = true
+macos-titlebar-style = hidden
+
+# ADD MY CUSTOM LIGHT AND DARK THEMES
+theme = dark:glass_dark_theme,light:glass_light_theme

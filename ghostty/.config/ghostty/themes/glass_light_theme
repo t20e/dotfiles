@@ -1,12 +1,8 @@
 
 # Custom glass light theme for Ghostty!
 
-#Blur
- background-opacity = 0.92
-background-blur = 50
-
-background = #ffffff 
-window-titlebar-background = #ffffff 
+background = #ffffff
+window-titlebar-background = #ffffff
 
 # Default text color
 foreground = #1F1F1F

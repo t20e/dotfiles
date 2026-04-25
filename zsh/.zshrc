@@ -7,8 +7,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Load zsh-autocomplete (https://github.com/marlonrichert/zsh-autocomplete)
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 
 
 # Make the zcompdump into a directory instead of the file being dumped into the home directory.
@@ -16,7 +15,7 @@ mkdir -p "$HOME/.cache/zsh/zcompdumps"
 export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdumps/.zcompdump"
 
 
-# >>> Conda initialize >>>
+# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/tonyavis/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -30,6 +29,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 
 
 
@@ -67,11 +67,22 @@ bindkey '^Q' backward-kill-line
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# config for zsh-autocomplete
-bindkey              '^I'         menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
-# 
+# ====================== zsh-autocomplete Config ======================
+# 1. Bind Arrow Up/Down to history search instead of the menu
+bindkey '\e[A' up-line-or-search
+bindkey '\e[B' down-line-or-search
 
+# 2. Bind the menu to Tab (as you already had)
+bindkey '^I' menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+
+# 3. Prevent the plugin from hijacking the Up/Down keys for its menu
+zstyle ':autocomplete:*' key-binding up-line-or-search
+zstyle ':autocomplete:*' key-binding down-line-or-search
+
+
+# Load zsh-autocomplete (https://github.com/marlonrichert/zsh-autocomplete)
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Created by `pipx` on 2026-04-06 21:41:16
 # pipx paths
