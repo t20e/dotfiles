@@ -1,3 +1,12 @@
 .DS_Store
 
 tmux/.config/tmux/plugins
+
+continue/.continue/sessions
+continue/.continue/index
+continue/.continue/dev_data
+continue/.continue/types
+continue/.continue/config.ts
+continue/.continue/package.json
+continue/.continue/tsconfig.json
+continue/.continue/.utils

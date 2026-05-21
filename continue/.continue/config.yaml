@@ -1,0 +1,32 @@
+name: Local Config
+version: 1.0.0
+schema: v1
+
+# See models @ https://ollama.com/search
+models:
+    - name: Qwen3.5 35B
+      # For larger models that you chat with, it's a good idea to release them from memory when you are not using them. Run: `ollama stop <model_name: example: qwen3.5:35b>`
+      provider: ollama
+      model: qwen3.5:35b
+      roles:
+          - chat
+          - edit
+          - apply
+    - name: Qwen2.5-coder:3b
+      # Use a smaller model for autocomplete, so that it runs almost instantly!
+      # I tried:
+      #   starcoder2:3b           | 1.7 GB |
+      #   qwen2.5-coder:7b        | 4.7 GB |
+      #   Qwen2.5-coder:1.5b      | 986MB  |   Its already but not good enough, I barely saw any suggestions
+      #   qwen3.5:9b              | 6.6 GB | 
+
+      provider: ollama
+      model: qwen2.5-coder:3b
+      roles:
+          - autocomplete
+
+    - name: Nomic Embed
+      provider: ollama
+      model: nomic-embed-text:latest
+      roles:
+          - embed

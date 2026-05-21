@@ -61,7 +61,7 @@ window-width = 90
 background-opacity = 0.5
 # macos-glass-clear or macos-glass-regular
 background-blur = true
-macos-titlebar-style = hidden
+
 
 # ADD MY CUSTOM LIGHT AND DARK THEMES
 theme = dark:glass_dark_theme,light:glass_light_theme

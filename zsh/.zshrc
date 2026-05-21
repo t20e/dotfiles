@@ -67,23 +67,51 @@ bindkey '^Q' backward-kill-line
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# ====================== zsh-autocomplete Config ======================
-# 1. Bind Arrow Up/Down to history search instead of the menu
-bindkey '\e[A' up-line-or-search
-bindkey '\e[B' down-line-or-search
 
-# 2. Bind the menu to Tab (as you already had)
+
+# ====================== zsh-autocomplete Config ======================
+# Load the plugin first so we can override its behavior
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# FIX TAB CYCLE: Force Tab to cycle forwards and Shift+Tab to cycle backwards through the menu
 bindkey '^I' menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete
 
-# 3. Prevent the plugin from hijacking the Up/Down keys for its menu
-zstyle ':autocomplete:*' key-binding up-line-or-search
-zstyle ':autocomplete:*' key-binding down-line-or-search
+# Custom Conda Sorting: Sorts environments by frequency in history, drops 'base' to the bottom
+_custom_conda_env_list() {
+  local -a history_envs actual_envs final_envs
+  
+  # 1. Grab envs from recent history, count frequency, sort highest first (exclude base)
+  history_envs=($(fc -ln -1000 | grep -E 'conda activate|conda deactivate' | awk '{print $3}' | grep -v 'base' | awk 'NF' | sort | uniq -c | sort -nr | awk '{print $2}'))
+  
+  # 2. Get all currently existing conda envs
+  if (( $+commands[conda] )); then
+    actual_envs=($(conda env list | grep -v '^#' | awk '{print $1}'))
+  fi
 
+  # 3. Build ordered list: Frequent envs first
+  for env in $history_envs; do
+    if (($actual_envs[(Ie)$env])); then
+      final_envs+=($env)
+    fi
+  done
+  # Append remaining active envs
+  for env in $actual_envs; do
+    if [[ "$env" != "base" ]] && (( ! $final_envs[(Ie)$env] )); then
+      final_envs+=($env)
+    fi
+  done
+  # Append 'base' at the absolute end
+  if (($actual_envs[(Ie)base])); then
+    final_envs+=(base)
+  fi
 
-# Load zsh-autocomplete (https://github.com/marlonrichert/zsh-autocomplete)
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  # Pass the sorted list to ZSH completion without alphabetical re-sorting (-V)
+  compadd -V environments -a final_envs
+}
+
+# Teach ZSH's completion system to use our custom function specifically for conda activate
+compdef _custom_conda_env_list 'conda activate'
 
 # Created by `pipx` on 2026-04-06 21:41:16
-# pipx paths
 export PATH="$PATH:/Users/tonyavis/.local/bin"

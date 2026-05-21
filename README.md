@@ -46,6 +46,8 @@ Example tree structure:
 ```
 
 > [!NOTE]
+> Remove the (.) from the tool_name when creating the file in ~/.dotnet
+>
 > **Root-level** (e.g., ZSH, Git)
 >
 > ```bash
