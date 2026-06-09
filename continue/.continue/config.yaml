@@ -2,31 +2,31 @@ name: Local Config
 version: 1.0.0
 schema: v1
 
-# See models @ https://ollama.com/search
+
+# Moved from Ollama to llama.cpp
+# Edit llama.cpp models at ./.dotfiles/non_symlink_configs/llama.cpp/start_backend.sh
+
 models:
-    - name: Qwen3.5 35B
-      # For larger models that you chat with, it's a good idea to release them from memory when you are not using them. Run: `ollama stop <model_name: example: qwen3.5:35b>`
-      provider: ollama
-      model: qwen3.5:35b
+    - name: Gemma 4 31B (Chat)
+      provider: openai # openai provider = OpenAI-compatible REST API (works with llama.cpp's /v1 endpoint)
+      model: gemma-4-31b
+      apiBase: http://localhost:8080/v1
       roles:
           - chat
           - edit
           - apply
-    - name: Qwen2.5-coder:3b
-      # Use a smaller model for autocomplete, so that it runs almost instantly!
-      # I tried:
-      #   starcoder2:3b           | 1.7 GB |
-      #   qwen2.5-coder:7b        | 4.7 GB |
-      #   Qwen2.5-coder:1.5b      | 986MB  |   Its already but not good enough, I barely saw any suggestions
-      #   qwen3.5:9b              | 6.6 GB | 
 
-      provider: ollama
-      model: qwen2.5-coder:3b
+    - name: Qwen2.5 Coder 3B (Autocomplete)
+      provider: openai  # openai provider = OpenAI-compatible REST API (works with llama.cpp's /v1 endpoint)
+      model: ggml-org/Qwen2.5-Coder-3B-Q8_0-GGUF:Q8_0
+      apiBase: http://localhost:8081/v1
       roles:
           - autocomplete
 
     - name: Nomic Embed
-      provider: ollama
-      model: nomic-embed-text:latest
+      provider: openai
+      model: nomic-embed
+      apiBase: http://localhost:8082/v1
       roles:
           - embed
+
