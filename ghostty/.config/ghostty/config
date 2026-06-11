@@ -1,3 +1,4 @@
+
 # This is the configuration file for Ghostty.
 #
 # This template file has been automatically created at the following
@@ -51,14 +52,14 @@
 
 font-family = JetBrainsMono Nerd Font
 font-size = 16
-window-padding-x = 30
+window-padding-x = 10
 window-padding-y = 10
 cursor-style = block
 window-height = 30
 window-width = 90
 
 # Add glass theme
-background-opacity = 0.5
+background-opacity = 0.7
 # macos-glass-clear or macos-glass-regular
 background-blur = true
 

@@ -12,3 +12,10 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.showbreak = "       " -- indent the wrapped more than the previous
+
+
+vim.opt.fileformat = "unix"
+vim.opt.fileformats = "unix,dos"
+
+--  Ensure a clean trailing newline exists on save (Crucial for Markdown parsers)
+vim.opt.fixendofline = true

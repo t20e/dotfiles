@@ -8,11 +8,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# Make tools save their configurations inside of ~/.config instead of just any where in the file system. This keeps the file system not cluttered
+export XDG_CONFIG_HOME="$HOME/.config"
 
 
 # Make the zcompdump into a directory instead of the file being dumped into the home directory.
 mkdir -p "$HOME/.cache/zsh/zcompdumps"
 export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdumps/.zcompdump"
+
+
 
 
 # >>> conda initialize >>>
@@ -115,3 +119,9 @@ compdef _custom_conda_env_list 'conda activate'
 
 # Created by `pipx` on 2026-04-06 21:41:16
 export PATH="$PATH:/Users/tonyavis/.local/bin"
+
+
+
+
+
+
