@@ -10,3 +10,5 @@ continue/.continue/config.ts
 continue/.continue/package.json
 continue/.continue/tsconfig.json
 continue/.continue/.utils
+
+.zshrc_private

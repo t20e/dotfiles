@@ -1,11 +1,12 @@
 
 
-# Add MD Journal path from .zshrc_private
+# === Add items from .zshrc_private that I want to be kept private from my public .dotfile repo ===
 if [ -f ~/.zshrc_private ]; then
   . ~/.zshrc_private
 fi
 
 
+# === Powerlevel10k ===
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
