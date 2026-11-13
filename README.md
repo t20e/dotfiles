@@ -17,7 +17,10 @@ rm -f ~/.zshrc
 # etc...
 
 # 4. Deploy the symlinks
+# 💡 Remember it only saves configs, you must redownload the programs too, like Oh-My-Zsh. 
 stow zsh
+    # Install Oh-My-Zsh: $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Install Zsh-Autocomplete: $ brew install zsh-autocomplete
 stow ghostty
 # stow anymore you want...
 ```
