@@ -4,25 +4,42 @@ This repository contains my centralized configurations for various development t
 
 ## Setting Up A New Machine
 
+1. Install prerequisites
+- Recommended Font: [Jetbrains Mono](https://www.jetbrains.com/lp/mono/#intro)
+
 ```bash
-# 1. Install prerequisites
 brew install stow git
+```
 
-# 2. Clone the repository
-git clone https://github.com/t20e/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+2. Install [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-# 3. Remove default OS files to prevent Stow conflicts
-rm -f ~/.zshrc
-# etc...
+```bash
+# Install Oh-My-Zsh: 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install PowerLevel10k:
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+# Install Zsh-Autocomplete: 
+brew install zsh-autocomplete
+```
 
-# 4. Deploy the symlinks
-# 💡 Remember it only saves configs, you must redownload the programs too, like Oh-My-Zsh. 
-stow zsh
-    # Install Oh-My-Zsh: $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # Install Zsh-Autocomplete: $ brew install zsh-autocomplete
-stow ghostty
-# stow anymore you want...
+3. Clone Dotfiles repo
+
+```bash
+git clone https://github.com/t20e/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+```
+
+4. Stow configs
+
+```bash
+# Dry run to find any conflicts, if conflicts appear make sure to save those files if you don't want to overwrite them!
+stow -n -v zsh powerlevel10k ghostty
+
+# Deploy the symlinks
+stow zsh powerlevel10k ghostty
+# Stow anymore you want...
+
+exec zsh
 ```
 
 ## Stowing New Tools To Dotfiles

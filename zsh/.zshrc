@@ -85,10 +85,10 @@ bindkey "$terminfo[kcbt]" reverse-menu-complete
 # Custom Conda Sorting: Sorts environments by frequency in history, drops 'base' to the bottom
 _custom_conda_env_list() {
   local -a history_envs actual_envs final_envs
-  
+
   # 1. Grab envs from recent history, count frequency, sort highest first (exclude base)
   history_envs=($(fc -ln -1000 | grep -E 'conda activate|conda deactivate' | awk '{print $3}' | grep -v 'base' | awk 'NF' | sort | uniq -c | sort -nr | awk '{print $2}'))
-  
+
   # 2. Get all currently existing conda envs
   if (( $+commands[conda] )); then
     actual_envs=($(conda env list | grep -v '^#' | awk '{print $1}'))
@@ -120,9 +120,3 @@ compdef _custom_conda_env_list 'conda activate'
 
 # Created by `pipx` on 2026-04-06 21:41:16
 export PATH="$PATH:/Users/tonyavis/.local/bin"
-
-
-
-
-
-
