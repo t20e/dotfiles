@@ -12,3 +12,4 @@ continue/.continue/tsconfig.json
 continue/.continue/.utils
 
 .zshrc_private
+/zed/.config/zed/prompts

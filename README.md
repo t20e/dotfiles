@@ -32,6 +32,9 @@ cd ~/.dotfiles
 4. Stow configs
 
 ```bash
+# Remove default ZSH config file, not that if you made any changes this will erase them.
+rm ~/.zshrc
+
 # Dry run to find any conflicts, if conflicts appear make sure to save those files if you don't want to overwrite them!
 stow -n -v zsh powerlevel10k ghostty
 
@@ -40,6 +43,9 @@ stow zsh powerlevel10k ghostty
 # Stow anymore you want...
 
 exec zsh
+
+# If error `chpwd_recent_filehandler:29: no such file or directory:`
+#     Run: mkdir -p ~/.local/share/zsh
 ```
 
 ## Stowing New Tools To Dotfiles
@@ -53,7 +59,7 @@ Files must mirror their exact path relative to your home directory (`~/`).
 
 ### Workflow A: Stowing an Entire Config Directory (e.g., Neovim, Ghostty)
 
-- Use this for tools that store only configuration files inside a dedicated folder. Example:
+- Use this for tools that store only configuration files inside a dedicated folder. Example (Ghostty):
 
     ```text
     .config/ghostty
@@ -66,14 +72,14 @@ Files must mirror their exact path relative to your home directory (`~/`).
 ```bash
 TOOL="ghostty"
 
-# Recreate the ~/.config default OS directory inside the ~/dotfiles
-mkdir -p ~/dotfiles/$TOOL/.config
+# Recreate the ~/.config default OS directory inside the ~/.dotfiles
+mkdir -p ~/.dotfiles/$TOOL/.config
 
-# Move the config into ~/dotfiles
-mv ~/.config/$TOOL ~/dotfiles/$TOOL/.config/
+# Move the config into ~/.dotfiles
+mv ~/.config/$TOOL ~/.dotfiles/$TOOL/.config/
 
 # Deploy the symlink
-cd ~/dotfiles && stow $TOOL
+cd ~/.dotfiles && stow $TOOL
 ```
 
 ### Workflow B: Stowing a Targeted File (e.g., Apps with messy folders)
@@ -91,14 +97,14 @@ cd ~/dotfiles && stow $TOOL
 TOOL="continue"
 CONFIG_FILE="config.yaml"
 
-# Recreate the target hidden directory structure inside the ~/dotfiles
-mkdir -p ~/dotfiles/$TOOL/.$TOOL
+# Recreate the target hidden directory structure inside the ~/.dotfiles
+mkdir -p ~/.dotfiles/$TOOL/.$TOOL
 
-# Move only the config file into ~/dotfiles
-mv ~/.$TOOL/$CONFIG_FILE ~/dotfiles/$TOOL/.$TOOL/
+# Move only the config file into ~/.dotfiles
+mv ~/.$TOOL/$CONFIG_FILE ~/.dotfiles/$TOOL/.$TOOL/
 
 # Deploy the symlink
-cd ~/dotfiles && stow $TOOL
+cd ~/.dotfiles && stow $TOOL
 ```
 
 ### Workflow C: Stowing a dedicated root level config (e.g., ZSH)
@@ -106,7 +112,7 @@ cd ~/dotfiles && stow $TOOL
 - Example:
 
     ```text
-    ~ (home dir)
+    ~ (Home Directory)
     ├── ...
     ├── ~/.zshrc
     etc...
@@ -116,9 +122,9 @@ cd ~/dotfiles && stow $TOOL
 TOOL="zsh"
 CONFIG_FILE=".zshrc"
 
-mkdir -p ~/dotfiles/$TOOL/
-mv ~/$CONFIG_FILE ~/dotfiles/$TOOL/
-cd ~/dotfiles && stow $TOOL
+mkdir -p ~/.dotfiles/$TOOL/
+mv ~/$CONFIG_FILE ~/.dotfiles/$TOOL/
+cd ~/.dotfiles && stow $TOOL
 ```
 
 ## How To Undo A Stow
@@ -130,9 +136,9 @@ If you need to completely remove a tool from the repository and restore it to it
 ```bash
 TOOL="ghostty"
 
-cd ~/dotfiles && stow -D $TOOL
-mv ~/dotfiles/$TOOL/.config/$TOOL ~/.config/
-rm -rf ~/dotfiles/$TOOL
+cd ~/.dotfiles && stow -D $TOOL
+mv ~/.dotfiles/$TOOL/.config/$TOOL ~/.config/
+rm -rf ~/.dotfiles/$TOOL
 ```
 
 **Example Home Root Configs:** Unstowing ZSH
@@ -141,15 +147,15 @@ rm -rf ~/dotfiles/$TOOL
 TOOL="zsh"
 CONFIG_FILE=".zshrc"
 
-cd ~/dotfiles && stow -D $TOOL
-mv ~/dotfiles/$TOOL/$CONFIG_FILE ~/
-rm -rf ~/dotfiles/$TOOL
+cd ~/.dotfiles && stow -D $TOOL
+mv ~/.dotfiles/$TOOL/$CONFIG_FILE ~/
+rm -rf ~/.dotfiles/$TOOL
 ```
 
-If you only want to remove the symlink and leave the configuration inside ~/dotfiles:
+If you only want to remove the symlink and leave the configuration inside ~/.dotfiles:
 
 ```bash
 TOOL="zsh"
 
-cd ~/dotfiles && stow -D $TOOL
+cd ~/.dotfiles && stow -D $TOOL
 ```
