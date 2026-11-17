@@ -2,7 +2,7 @@
 
 This repository contains my centralized configurations for various development tools.
 
-## Setting Up A New Machine
+## Configure New Machine
 
 1. Install prerequisites
 - Recommended Font: [Jetbrains Mono](https://www.jetbrains.com/lp/mono/#intro)
@@ -11,7 +11,7 @@ This repository contains my centralized configurations for various development t
 brew install stow git
 ```
 
-2. Install [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
+2. Install [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) | [PowerLevel10k](https://github.com/romkatv/powerlevel10k) | [ZSH-Autocomplete](https://formulae.brew.sh/formula/zsh-autocomplete#default)
 
 ```bash
 # Install Oh-My-Zsh: 
