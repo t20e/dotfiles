@@ -7,7 +7,11 @@ This repository contains my centralized configurations for various development t
 1. Install prerequisites
 - Recommended Font: [Jetbrains Mono](https://www.jetbrains.com/lp/mono/#intro)
 
+- Install homebrew:
+
 ```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Use the commands Homebrew prompts to add Brew to your PATH
 brew install stow git
 ```
 
@@ -39,13 +43,16 @@ rm ~/.zshrc
 stow -n -v zsh powerlevel10k ghostty
 
 # Deploy the symlinks
-stow zsh powerlevel10k ghostty
+stow zsh powerlevel10k ghostty zed
 # Stow anymore you want...
 
-exec zsh
+exec zsh # Restart the shell
 
 # If error `chpwd_recent_filehandler:29: no such file or directory:`
 #     Run: mkdir -p ~/.local/share/zsh
+
+# Download Zed, Github Desktop, etc... 
+
 ```
 
 ## Stowing New Tools To Dotfiles
